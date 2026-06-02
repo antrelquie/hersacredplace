@@ -1,0 +1,1219 @@
+<!--
+==============================================
+  HER SACRED SPACE — Bible Notes App
+  Host this file at any URL (Netlify, GitHub
+  Pages, Tiiny.host) then embed via URL in Carrd
+==============================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Her Sacred Space</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+
+/* ── TOKENS ── */
+:root{
+  --blush:    #f9eef1;
+  --petal:    #f0d6de;
+  --rose:     #d4788a;
+  --rose-dk:  #a54d62;
+  --dusty:    #c49aaa;
+  --lav:      #e8dff0;
+  --lav-md:   #c5b4d8;
+  --lav-dk:   #8a6aab;
+  --gold:     #c9a96e;
+  --gold-lt:  #faf3e6;
+  --gold-dk:  #8a6a35;
+  --sage:     #b8c9b0;
+  --cream:    #fdf8f4;
+  --warm:     #fdfaf6;
+  --ink:      #2d1f24;
+  --mid:      #6b4f58;
+  --soft:     #a08090;
+  --border:   #edd8df;
+  --white:    #ffffff;
+  --shadow:   rgba(212,120,138,.12);
+}
+
+/* ── BODY ── */
+body{
+  font-family:'Lato',sans-serif;
+  background: var(--cream);
+  background-image:
+    radial-gradient(ellipse at 15% 10%, rgba(240,214,222,.45) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 90%, rgba(232,223,240,.45) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(201,169,110,.08) 0%, transparent 60%);
+  color: var(--ink);
+  min-height:100vh;
+}
+
+/* ── WRAPPER ── */
+.wrap{max-width:880px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HEADER ── */
+.hd{
+  text-align:center;
+  padding:40px 0 24px;
+  border-bottom:1px solid var(--petal);
+  margin-bottom:28px;
+  position:relative;
+}
+.hd-flowers{font-size:18px;letter-spacing:8px;color:var(--rose);margin-bottom:6px;opacity:.7}
+.hd h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,6vw,46px);
+  font-weight:400;
+  letter-spacing:1px;
+  line-height:1.1;
+  color:var(--ink);
+}
+.hd h1 em{font-style:italic;color:var(--rose)}
+.hd-sub{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(14px,3vw,18px);
+  color:var(--dusty);
+  margin-top:6px;
+  letter-spacing:.5px;
+}
+/* tiny petal corners */
+.hd::before,.hd::after{
+  content:'🌸';
+  position:absolute;
+  top:40px;
+  font-size:16px;
+  opacity:.35;
+}
+.hd::before{left:12px}
+.hd::after{right:12px}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:8px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+.tab{
+  padding:9px 20px;
+  border:1.5px solid var(--petal);
+  border-radius:50px;
+  background:var(--white);
+  font-family:'Lato',sans-serif;
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--mid);
+  cursor:pointer;
+  transition:all .22s ease;
+  box-shadow:0 2px 8px var(--shadow);
+}
+.tab:hover{border-color:var(--rose);color:var(--rose);background:var(--blush)}
+.tab.on{
+  background:linear-gradient(135deg,#e8909f,var(--rose-dk));
+  color:var(--white);
+  border-color:transparent;
+  box-shadow:0 4px 14px rgba(164,77,98,.3);
+}
+
+/* ── PANELS ── */
+.panel{display:none}
+.panel.on{display:block;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── CARD ── */
+.card{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:22px;
+  padding:32px;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 4px 24px var(--shadow);
+}
+.card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+  background:linear-gradient(90deg,#f5c0cc,#e8d0f5,var(--gold),#f5c0cc);
+  background-size:200% 100%;
+  animation:shimmer 4s linear infinite;
+}
+@keyframes shimmer{0%{background-position:0% 0}100%{background-position:200% 0}}
+
+/* card accent corner florals */
+.card::after{
+  content:'✿';
+  position:absolute;
+  bottom:14px;right:18px;
+  font-size:22px;
+  color:var(--petal);
+  opacity:.5;
+  pointer-events:none;
+}
+
+.ctitle{
+  font-family:'Playfair Display',serif;
+  font-size:21px;
+  font-weight:400;
+  color:var(--ink);
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.ctitle .gem{
+  width:10px;height:10px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--rose),var(--rose-dk));
+  flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(212,120,138,.18);
+}
+
+/* ── FIELD ROW ── */
+.frow{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:14px;margin-bottom:18px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label,label.lbl{
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--soft);
+  font-weight:400;
+  font-family:'Lato',sans-serif;
+}
+.fg input{
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  padding:10px 13px;
+  font-family:'Lato',sans-serif;
+  font-size:13px;
+  color:var(--ink);
+  background:var(--blush);
+  outline:none;
+  transition:border-color .18s,background .18s;
+  -webkit-appearance:none;
+}
+.fg input:focus{border-color:var(--rose);background:var(--white);box-shadow:0 0 0 3px rgba(212,120,138,.1)}
+
+/* ── SCRIPTURE BAR ── */
+.sv{margin-bottom:18px}
+.sv input{
+  width:100%;
+  border:1.5px solid var(--gold);
+  border-radius:10px;
+  padding:11px 15px;
+  font-family:'Playfair Display',serif;
+  font-size:15px;
+  font-style:italic;
+  color:var(--gold-dk);
+  background:var(--gold-lt);
+  outline:none;
+  transition:border-color .18s;
+  -webkit-appearance:none;
+}
+.sv input:focus{border-color:var(--gold-dk);box-shadow:0 0 0 3px rgba(201,169,110,.15)}
+
+/* ── PASSAGE AREA ── */
+.ps{margin-bottom:18px;position:relative}
+.ps-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.ps-head label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--soft)}
+.pen-btn{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 12px;
+  border:1.5px solid var(--lav-md);
+  border-radius:30px;
+  background:var(--lav);
+  color:var(--lav-dk);
+  font-family:'Lato',sans-serif;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .18s;
+}
+.pen-btn:hover{background:var(--lav-md);color:var(--white)}
+.pen-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.pen-btn.active{background:var(--lav-dk);color:var(--white);border-color:var(--lav-dk)}
+
+/* typed textarea */
+.ps textarea{
+  width:100%;
+  min-height:1300px;
+  border:1.5px solid var(--border);
+  border-radius:14px;
+  padding:18px 18px 18px 22px;
+  font-family:'Lato',sans-serif;
+  font-size:15px;
+  line-height:2.15;
+  color:var(--ink);
+  background:#fffbfd;
+  resize:vertical;
+  outline:none;
+  transition:border-color .18s;
+  -webkit-appearance:none;
+  /* lined paper */
+  background-image:
+    linear-gradient(to right, rgba(212,120,138,.18) 0px, rgba(212,120,138,.18) 3px, transparent 3px),
+    repeating-linear-gradient(transparent,transparent 42px,rgba(232,213,218,.45) 42px,rgba(232,213,218,.45) 43px);
+  background-position: 52px 0, 0 18px;
+  background-attachment:local;
+}
+.ps textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(212,120,138,.09)}
+.ps textarea::placeholder{color:var(--soft);font-style:italic;font-size:14px}
+
+/* Apple Pencil canvas overlay */
+.pen-canvas-wrap{
+  position:relative;
+  display:none;
+  border:1.5px solid var(--lav-md);
+  border-radius:14px;
+  overflow:hidden;
+  background:#fffbfd;
+  background-image:
+    linear-gradient(to right, rgba(212,120,138,.18) 0px, rgba(212,120,138,.18) 3px, transparent 3px),
+    repeating-linear-gradient(transparent,transparent 42px,rgba(232,213,218,.45) 42px,rgba(232,213,218,.45) 43px);
+  background-position: 52px 0, 0 18px;
+  touch-action:none;
+}
+.pen-canvas-wrap.show{display:block}
+.pen-canvas-wrap canvas{
+  display:block;
+  width:100%;
+  cursor:crosshair;
+  touch-action:none;
+}
+.canvas-toolbar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  background:var(--blush);
+  border-bottom:1px solid var(--petal);
+  flex-wrap:wrap;
+}
+.canvas-toolbar label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--soft)}
+.color-swatch{
+  width:22px;height:22px;
+  border-radius:50%;
+  border:2px solid transparent;
+  cursor:pointer;
+  transition:transform .15s;
+}
+.color-swatch.sel{border-color:var(--ink);transform:scale(1.2)}
+.size-btn{
+  padding:3px 10px;
+  border:1.5px solid var(--border);
+  border-radius:20px;
+  background:var(--white);
+  font-size:11px;
+  color:var(--mid);
+  cursor:pointer;
+}
+.size-btn.sel{background:var(--rose);color:var(--white);border-color:var(--rose)}
+.canvas-clr-btn{
+  margin-left:auto;
+  padding:4px 12px;
+  border:1.5px solid var(--border);
+  border-radius:20px;
+  background:transparent;
+  font-family:'Lato',sans-serif;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--soft);
+  cursor:pointer;
+}
+.canvas-clr-btn:hover{color:var(--rose);border-color:var(--rose)}
+.eraser-btn{
+  padding:3px 10px;
+  border:1.5px solid var(--border);
+  border-radius:20px;
+  background:var(--white);
+  font-size:11px;
+  color:var(--mid);
+  cursor:pointer;
+}
+.eraser-btn.sel{background:var(--lav-dk);color:var(--white);border-color:var(--lav-dk)}
+
+/* ── EXTRA PAGE (continued) ── */
+.xpage{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:22px;
+  padding:32px;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 4px 24px var(--shadow);
+}
+.xpage::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,#e8d0f5,#f5c0cc,var(--gold),#e8d0f5);
+  background-size:200% 100%;
+  animation:shimmer 4s linear infinite;
+}
+.xpage::after{content:'✿';position:absolute;bottom:14px;right:18px;font-size:22px;color:var(--petal);opacity:.5;pointer-events:none}
+.xlbl{
+  font-family:'Playfair Display',serif;
+  font-size:19px;font-weight:400;color:var(--ink);
+  margin-bottom:18px;display:flex;align-items:center;gap:10px;
+}
+.xlbl .gem{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--rose-dk));flex-shrink:0;box-shadow:0 0 0 3px rgba(212,120,138,.18)}
+.xpage textarea{
+  width:100%;min-height:900px;
+  border:1.5px solid var(--border);border-radius:14px;
+  padding:18px 18px 18px 22px;
+  font-family:'Lato',sans-serif;font-size:15px;line-height:2.15;
+  color:var(--ink);background:#fffbfd;resize:vertical;outline:none;
+  background-image:
+    linear-gradient(to right,rgba(212,120,138,.18) 0px,rgba(212,120,138,.18) 3px,transparent 3px),
+    repeating-linear-gradient(transparent,transparent 42px,rgba(232,213,218,.45) 42px,rgba(232,213,218,.45) 43px);
+  background-position:52px 0,0 18px;
+  background-attachment:local;
+  -webkit-appearance:none;
+}
+.xpage textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(212,120,138,.09)}
+.xpage textarea::placeholder{color:var(--soft);font-style:italic;font-size:14px}
+
+/* xpage pen canvas */
+.xpage .pen-canvas-wrap{border:1.5px solid var(--lav-md);border-radius:14px}
+
+/* ── MINI GRIDS ── */
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+@media(max-width:560px){.mgrid{grid-template-columns:1fr}}
+.mn label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:5px}
+.mn textarea{
+  width:100%;height:115px;
+  border:1.5px solid var(--border);border-radius:10px;
+  padding:12px;font-family:'Lato',sans-serif;font-size:12px;line-height:1.75;
+  color:var(--ink);background:var(--blush);resize:none;outline:none;
+  -webkit-appearance:none;
+}
+.mn textarea:focus{border-color:var(--rose);background:var(--white);box-shadow:0 0 0 3px rgba(212,120,138,.08)}
+.mn textarea::placeholder{color:var(--soft);font-size:11px}
+
+/* ── PRAYER ── */
+.pray{margin-bottom:24px}
+.pray label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:5px}
+.pray textarea{
+  width:100%;height:95px;
+  border:1.5px solid var(--lav-md);border-radius:10px;
+  padding:12px;font-family:'Playfair Display',serif;font-style:italic;font-size:14px;line-height:1.85;
+  color:var(--ink);background:var(--lav);resize:none;outline:none;
+  -webkit-appearance:none;
+}
+.pray textarea:focus{border-color:var(--lav-dk);box-shadow:0 0 0 3px rgba(138,106,171,.12)}
+
+/* ── ACTION BUTTONS ── */
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.btn-save{
+  padding:12px 26px;
+  background:linear-gradient(135deg,#e8909f,var(--rose-dk));
+  color:var(--white);border:none;border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+  cursor:pointer;transition:opacity .18s,transform .15s;
+  box-shadow:0 4px 14px rgba(164,77,98,.28);
+}
+.btn-save:hover{opacity:.88;transform:translateY(-1px)}
+.btn-print{
+  padding:12px 26px;background:var(--white);color:var(--gold-dk);
+  border:1.5px solid var(--gold);border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+  cursor:pointer;transition:background .18s;
+}
+.btn-print:hover{background:var(--gold-lt)}
+.btn-clr{
+  padding:12px 20px;background:transparent;
+  color:var(--soft);border:1.5px solid var(--border);border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+  cursor:pointer;transition:all .18s;
+}
+.btn-clr:hover{color:var(--rose);border-color:var(--petal);background:var(--blush)}
+
+/* ── SAVED LIST ── */
+.si{
+  background:var(--white);border:1.5px solid var(--border);border-radius:14px;
+  padding:15px 18px;margin-bottom:10px;
+  display:flex;align-items:flex-start;gap:13px;cursor:pointer;
+  transition:border-color .18s,box-shadow .18s;
+  box-shadow:0 2px 8px var(--shadow);
+}
+.si:hover{border-color:var(--rose);box-shadow:0 4px 16px var(--shadow)}
+.sit{
+  background:var(--blush);color:var(--rose);
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:2px;
+}
+.sit.sv{background:var(--gold-lt);color:var(--gold-dk)}
+.sit.st{background:var(--lav);color:var(--lav-dk)}
+.sinfo{flex:1;min-width:0}
+.stitle{font-family:'Playfair Display',serif;font-size:15px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smeta{font-size:10px;color:var(--soft);margin-top:3px}
+.sdel{background:none;border:none;color:var(--soft);cursor:pointer;font-size:16px;padding:2px 4px;flex-shrink:0}
+.sdel:hover{color:var(--rose)}
+.empty{text-align:center;color:var(--soft);font-style:italic;padding:32px 0;font-family:'Playfair Display',serif;font-size:16px}
+
+/* ── MORNING PANEL ── */
+.morning-banner{
+  background:linear-gradient(135deg,#fff0f4,#f8f0fc,#fff5e8);
+  border:1.5px solid var(--petal);border-radius:22px;
+  padding:32px;text-align:center;margin-bottom:20px;
+  box-shadow:0 4px 24px var(--shadow);
+  position:relative;overflow:hidden;
+}
+.morning-banner::before{content:'🌸';position:absolute;top:16px;left:20px;font-size:20px;opacity:.3}
+.morning-banner::after{content:'🌿';position:absolute;bottom:16px;right:20px;font-size:20px;opacity:.3}
+.morning-banner .fl{font-size:36px;margin-bottom:10px}
+.morning-banner h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;color:var(--ink);margin-bottom:8px}
+.morning-banner h2 em{font-style:italic;color:var(--rose)}
+.morning-banner p{font-size:13px;color:var(--mid);line-height:1.8;margin-bottom:22px;max-width:460px;margin-left:auto;margin-right:auto}
+.trow{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.trow label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--soft)}
+.trow input[type=time]{
+  border:1.5px solid var(--petal);border-radius:10px;
+  padding:8px 14px;font-family:'Lato',sans-serif;font-size:16px;
+  color:var(--rose);background:var(--white);outline:none;
+}
+.tog-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
+.tog-lbl{font-size:13px;color:var(--mid)}
+.tog{
+  width:50px;height:27px;background:var(--border);border-radius:14px;
+  position:relative;cursor:pointer;border:none;flex-shrink:0;transition:background .22s;
+}
+.tog.on{background:var(--rose)}
+.tog::after{
+  content:'';position:absolute;
+  width:21px;height:21px;background:var(--white);border-radius:50%;
+  top:3px;left:3px;transition:transform .22s;
+  box-shadow:0 1px 4px rgba(0,0,0,.18);
+}
+.tog.on::after{transform:translateX(23px)}
+.ntypes{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:18px 0}
+.ntype{
+  padding:8px 18px;border:1.5px solid var(--border);border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;background:var(--white);color:var(--mid);transition:all .18s;
+}
+.ntype.on{background:var(--blush);color:var(--rose);border-color:var(--rose)}
+.qcard{
+  background:var(--white);border:1.5px solid var(--border);
+  border-radius:18px;padding:30px;text-align:center;
+  margin-bottom:16px;transition:opacity .35s;
+  box-shadow:0 4px 20px var(--shadow);
+  position:relative;
+}
+.qcard::before{content:'\201C';font-family:'Playfair Display',serif;font-size:60px;color:var(--petal);position:absolute;top:-4px;left:18px;line-height:1;pointer-events:none}
+.qtext{
+  font-family:'Playfair Display',serif;font-size:19px;font-style:italic;font-weight:400;
+  color:var(--ink);line-height:1.8;margin-bottom:14px;padding:0 10px;
+}
+.qref{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose)}
+.nqbtn{
+  background:none;border:1.5px solid var(--petal);color:var(--rose);
+  padding:10px 22px;border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;display:block;margin:0 auto;transition:all .18s;
+}
+.nqbtn:hover{background:var(--blush);border-color:var(--rose)}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:26px;left:50%;
+  transform:translateX(-50%) translateY(18px);
+  background:linear-gradient(135deg,var(--rose-dk),#6e2840);
+  color:var(--white);
+  padding:12px 26px;border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:1.5px;
+  opacity:0;transition:all .3s ease;z-index:9999;pointer-events:none;white-space:nowrap;
+  box-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── PRINT ── */
+@media print{
+  body{background:white!important}
+  .tabs,.acts,#p-saved,.morning-banner,.qcard,.nqbtn,.ntypes,.tog-row,.trow,.toast,.pen-btn,.canvas-toolbar,.pen-canvas-wrap{display:none!important}
+  .panel{display:block!important}
+  .card,.xpage{border:1px solid #ccc!important;page-break-inside:avoid;margin-bottom:0;box-shadow:none!important}
+  .card::before,.xpage::before{display:none!important}
+  .card::after,.xpage::after{display:none!important}
+  .ps textarea,.xpage textarea{min-height:1100px!important;border:1px solid #ddd!important;background:white!important}
+  .fg input,.sv input,.mn textarea,.pray textarea{border:1px solid #ddd!important;background:white!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="hd">
+    <div class="hd-flowers">🌸 ✦ 🌸</div>
+    <h1>Her <em>Sacred</em> Space</h1>
+    <p class="hd-sub">Bible Notes &amp; Daily Devotion</p>
+  </header>
+
+  <!-- TABS -->
+  <nav class="tabs">
+    <button class="tab on"  data-tab="daily">Daily Reading</button>
+    <button class="tab"     data-tab="service">Sunday Service</button>
+    <button class="tab"     data-tab="study">Bible Study</button>
+    <button class="tab"     data-tab="saved">My Notes</button>
+    <button class="tab"     data-tab="morning">🌸 Morning Light</button>
+  </nav>
+
+  <!-- ══ DAILY ══ -->
+  <div id="p-daily" class="panel on">
+    <div class="card">
+      <div class="ctitle"><span class="gem"></span>Daily Bible Reading</div>
+      <div class="frow">
+        <div class="fg"><label>Date</label><input type="date" id="d-date"></div>
+        <div class="fg"><label>Reading Plan</label><input type="text" id="d-plan" placeholder="e.g. Psalms in 30 Days"></div>
+        <div class="fg"><label>Book &amp; Chapter</label><input type="text" id="d-chap" placeholder="e.g. Psalm 23"></div>
+      </div>
+      <div class="sv"><label class="lbl">Key Scripture / Verse</label><input type="text" id="d-verse" placeholder="e.g. Psalm 23:1 — The Lord is my shepherd…"></div>
+      <div class="ps">
+        <div class="ps-head">
+          <label>Passage &amp; Notes</label>
+          <button class="pen-btn" data-pen="d-pass">
+            <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            Apple Pencil
+          </button>
+        </div>
+        <textarea id="d-pass" placeholder="Write out the passage, your reflections, what God is saying to you today…"></textarea>
+        <div class="pen-canvas-wrap" id="cv-d-pass">
+          <div class="canvas-toolbar">
+            <label>Ink:</label>
+            <span class="color-swatch sel" data-color="#2d1f24" style="background:#2d1f24" title="Ink"></span>
+            <span class="color-swatch" data-color="#d4788a" style="background:#d4788a" title="Rose"></span>
+            <span class="color-swatch" data-color="#8a6aab" style="background:#8a6aab" title="Lavender"></span>
+            <span class="color-swatch" data-color="#c9a96e" style="background:#c9a96e" title="Gold"></span>
+            <span class="color-swatch" data-color="#b8c9b0" style="background:#b8c9b0" title="Sage"></span>
+            <label style="margin-left:6px">Size:</label>
+            <button class="size-btn" data-size="2">Fine</button>
+            <button class="size-btn sel" data-size="3.5">Med</button>
+            <button class="size-btn" data-size="6">Bold</button>
+            <button class="eraser-btn" data-eraser="1">Eraser</button>
+            <button class="canvas-clr-btn" data-canvasClear="1">Clear Canvas</button>
+          </div>
+          <canvas></canvas>
+        </div>
+      </div>
+      <div class="mgrid">
+        <div class="mn"><label>What stood out</label><textarea id="d-out" placeholder="A word or verse that spoke to your heart…"></textarea></div>
+        <div class="mn"><label>How I will apply this</label><textarea id="d-app" placeholder="One way to live this truth out today…"></textarea></div>
+      </div>
+      <div class="pray"><label>Prayer Response</label><textarea id="d-pray" placeholder="Lord, today I come to you with…"></textarea></div>
+      <div class="acts">
+        <button class="btn-save" data-save="daily">Save Entry</button>
+        <button class="btn-print" data-print="1">🖨 Print</button>
+        <button class="btn-clr" data-clear="daily">Clear</button>
+      </div>
+    </div>
+    <div class="xpage">
+      <div class="xlbl"><span class="gem"></span>Passage &amp; Notes — Continued</div>
+      <div class="ps-head" style="margin-bottom:6px">
+        <span></span>
+        <button class="pen-btn" data-pen="d-pass2">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+          Apple Pencil
+        </button>
+      </div>
+      <textarea id="d-pass2" placeholder="Continue writing here… more reflections, verses, thoughts, and what the Spirit is revealing…"></textarea>
+      <div class="pen-canvas-wrap" id="cv-d-pass2">
+        <div class="canvas-toolbar">
+          <label>Ink:</label>
+          <span class="color-swatch sel" data-color="#2d1f24" style="background:#2d1f24"></span>
+          <span class="color-swatch" data-color="#d4788a" style="background:#d4788a"></span>
+          <span class="color-swatch" data-color="#8a6aab" style="background:#8a6aab"></span>
+          <span class="color-swatch" data-color="#c9a96e" style="background:#c9a96e"></span>
+          <span class="color-swatch" data-color="#b8c9b0" style="background:#b8c9b0"></span>
+          <label style="margin-left:6px">Size:</label>
+          <button class="size-btn" data-size="2">Fine</button>
+          <button class="size-btn sel" data-size="3.5">Med</button>
+          <button class="size-btn" data-size="6">Bold</button>
+          <button class="eraser-btn" data-eraser="1">Eraser</button>
+          <button class="canvas-clr-btn" data-canvasClear="1">Clear Canvas</button>
+        </div>
+        <canvas></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SERVICE ══ -->
+  <div id="p-service" class="panel">
+    <div class="card">
+      <div class="ctitle"><span class="gem" style="background:linear-gradient(135deg,#c9a96e,#8a6a35)"></span>Sunday Service Notes</div>
+      <div class="frow">
+        <div class="fg"><label>Date</label><input type="date" id="s-date"></div>
+        <div class="fg"><label>Speaker / Pastor</label><input type="text" id="s-spk" placeholder="Pastor's name"></div>
+        <div class="fg"><label>Sermon Title</label><input type="text" id="s-ttl" placeholder="e.g. Walking in the Spirit"></div>
+        <div class="fg"><label>Series</label><input type="text" id="s-ser" placeholder="e.g. Fruit of the Spirit"></div>
+      </div>
+      <div class="sv"><label class="lbl">Main Scripture(s)</label><input type="text" id="s-verse" placeholder="e.g. Galatians 5:22–23 — But the fruit of the Spirit is…"></div>
+      <div class="ps">
+        <div class="ps-head">
+          <label>Sermon Notes</label>
+          <button class="pen-btn" data-pen="s-pass">
+            <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            Apple Pencil
+          </button>
+        </div>
+        <textarea id="s-pass" placeholder="Key points, scriptures mentioned, and what the Spirit is saying…"></textarea>
+        <div class="pen-canvas-wrap" id="cv-s-pass">
+          <div class="canvas-toolbar">
+            <label>Ink:</label>
+            <span class="color-swatch sel" data-color="#2d1f24" style="background:#2d1f24"></span>
+            <span class="color-swatch" data-color="#d4788a" style="background:#d4788a"></span>
+            <span class="color-swatch" data-color="#8a6aab" style="background:#8a6aab"></span>
+            <span class="color-swatch" data-color="#c9a96e" style="background:#c9a96e"></span>
+            <span class="color-swatch" data-color="#b8c9b0" style="background:#b8c9b0"></span>
+            <label style="margin-left:6px">Size:</label>
+            <button class="size-btn" data-size="2">Fine</button>
+            <button class="size-btn sel" data-size="3.5">Med</button>
+            <button class="size-btn" data-size="6">Bold</button>
+            <button class="eraser-btn" data-eraser="1">Eraser</button>
+            <button class="canvas-clr-btn" data-canvasClear="1">Clear Canvas</button>
+          </div>
+          <canvas></canvas>
+        </div>
+      </div>
+      <div class="mgrid">
+        <div class="mn"><label>Key Takeaways</label><textarea id="s-take" placeholder="The most important truths I received…"></textarea></div>
+        <div class="mn"><label>Action Steps</label><textarea id="s-act" placeholder="What I feel called to do this week…"></textarea></div>
+      </div>
+      <div class="mgrid">
+        <div class="mn"><label>Questions I Have</label><textarea id="s-q" placeholder="Things to research or bring to my group…"></textarea></div>
+        <div class="mn"><label>Who to Share With</label><textarea id="s-shr" placeholder="Someone who needs this message…"></textarea></div>
+      </div>
+      <div class="pray"><label>Closing Prayer</label><textarea id="s-pray" placeholder="Father, thank you for this word today…"></textarea></div>
+      <div class="acts">
+        <button class="btn-save" data-save="service">Save Notes</button>
+        <button class="btn-print" data-print="1">🖨 Print</button>
+        <button class="btn-clr" data-clear="service">Clear</button>
+      </div>
+    </div>
+    <div class="xpage">
+      <div class="xlbl"><span class="gem" style="background:linear-gradient(135deg,#c9a96e,#8a6a35)"></span>Sermon Notes — Continued</div>
+      <div class="ps-head" style="margin-bottom:6px"><span></span>
+        <button class="pen-btn" data-pen="s-pass2">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+          Apple Pencil
+        </button>
+      </div>
+      <textarea id="s-pass2" placeholder="Continue writing here… additional scripture references, illustrations, and personal notes…"></textarea>
+      <div class="pen-canvas-wrap" id="cv-s-pass2">
+        <div class="canvas-toolbar">
+          <label>Ink:</label>
+          <span class="color-swatch sel" data-color="#2d1f24" style="background:#2d1f24"></span>
+          <span class="color-swatch" data-color="#d4788a" style="background:#d4788a"></span>
+          <span class="color-swatch" data-color="#8a6aab" style="background:#8a6aab"></span>
+          <span class="color-swatch" data-color="#c9a96e" style="background:#c9a96e"></span>
+          <span class="color-swatch" data-color="#b8c9b0" style="background:#b8c9b0"></span>
+          <label style="margin-left:6px">Size:</label>
+          <button class="size-btn" data-size="2">Fine</button>
+          <button class="size-btn sel" data-size="3.5">Med</button>
+          <button class="size-btn" data-size="6">Bold</button>
+          <button class="eraser-btn" data-eraser="1">Eraser</button>
+          <button class="canvas-clr-btn" data-canvasClear="1">Clear Canvas</button>
+        </div>
+        <canvas></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ STUDY ══ -->
+  <div id="p-study" class="panel">
+    <div class="card">
+      <div class="ctitle"><span class="gem" style="background:linear-gradient(135deg,#c5b4d8,#8a6aab)"></span>Bible Study</div>
+      <div class="frow">
+        <div class="fg"><label>Date</label><input type="date" id="b-date"></div>
+        <div class="fg"><label>Study Leader / Group</label><input type="text" id="b-ldr" placeholder="Leader or group name"></div>
+        <div class="fg"><label>Study Title / Topic</label><input type="text" id="b-ttl" placeholder="e.g. Women of the Bible"></div>
+      </div>
+      <div class="sv"><label class="lbl">Scripture Focus</label><input type="text" id="b-verse" placeholder="e.g. Proverbs 31:25 — She is clothed with strength…"></div>
+      <div class="ps">
+        <div class="ps-head">
+          <label>Study Notes &amp; Passage</label>
+          <button class="pen-btn" data-pen="b-pass">
+            <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            Apple Pencil
+          </button>
+        </div>
+        <textarea id="b-pass" placeholder="Write out the passage, discussion points, cross-references, and insights…"></textarea>
+        <div class="pen-canvas-wrap" id="cv-b-pass">
+          <div class="canvas-toolbar">
+            <label>Ink:</label>
+            <span class="color-swatch sel" data-color="#2d1f24" style="background:#2d1f24"></span>
+            <span class="color-swatch" data-color="#d4788a" style="background:#d4788a"></span>
+            <span class="color-swatch" data-color="#8a6aab" style="background:#8a6aab"></span>
+            <span class="color-swatch" data-color="#c9a96e" style="background:#c9a96e"></span>
+            <span class="color-swatch" data-color="#b8c9b0" style="background:#b8c9b0"></span>
+            <label style="margin-left:6px">Size:</label>
+            <button class="size-btn" data-size="2">Fine</button>
+            <button class="size-btn sel" data-size="3.5">Med</button>
+            <button class="size-btn" data-size="6">Bold</button>
+            <button class="eraser-btn" data-eraser="1">Eraser</button>
+            <button class="canvas-clr-btn" data-canvasClear="1">Clear Canvas</button>
+          </div>
+          <canvas></canvas>
+        </div>
+      </div>
+      <div class="mgrid">
+        <div class="mn"><label>Word Study / Hebrew &amp; Greek</label><textarea id="b-word" placeholder="Key words and their deeper meanings…"></textarea></div>
+        <div class="mn"><label>Historical Context</label><textarea id="b-ctx" placeholder="Background that helps me understand this passage…"></textarea></div>
+      </div>
+      <div class="mgrid">
+        <div class="mn"><label>Personal Revelation</label><textarea id="b-pers" placeholder="What God personally revealed to me…"></textarea></div>
+        <div class="mn"><label>Group Discussion Notes</label><textarea id="b-grp" placeholder="What others shared that blessed me…"></textarea></div>
+      </div>
+      <div class="pray"><label>Closing Prayer</label><textarea id="b-pray" placeholder="Lord, let this word take root in my heart…"></textarea></div>
+      <div class="acts">
+        <button class="btn-save" data-save="study">Save Study</button>
+        <button class="btn-print" data-print="1">🖨 Print</button>
+        <button class="btn-clr" data-clear="study">Clear</button>
+      </div>
+    </div>
+    <div class="xpage">
+      <div class="xlbl"><span class="gem" style="background:linear-gradient(135deg,#c5b4d8,#8a6aab)"></span>Study Notes — Continued</div>
+      <div class="ps-head" style="margin-bottom:6px"><span></span>
+        <button class="pen-btn" data-pen="b-pass2">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+          Apple Pencil
+        </button>
+      </div>
+      <textarea id="b-pass2" placeholder="Continue writing here… deeper insights, cross-references, questions, and what God is speaking…"></textarea>
+      <div class="pen-canvas-wrap" id="cv-b-pass2">
+        <div class="canvas-toolbar">
+          <label>Ink:</label>
+          <span class="color-swatch sel" data-color="#2d1f24" style="background:#2d1f24"></span>
+          <span class="color-swatch" data-color="#d4788a" style="background:#d4788a"></span>
+          <span class="color-swatch" data-color="#8a6aab" style="background:#8a6aab"></span>
+          <span class="color-swatch" data-color="#c9a96e" style="background:#c9a96e"></span>
+          <span class="color-swatch" data-color="#b8c9b0" style="background:#b8c9b0"></span>
+          <label style="margin-left:6px">Size:</label>
+          <button class="size-btn" data-size="2">Fine</button>
+          <button class="size-btn sel" data-size="3.5">Med</button>
+          <button class="size-btn" data-size="6">Bold</button>
+          <button class="eraser-btn" data-eraser="1">Eraser</button>
+          <button class="canvas-clr-btn" data-canvasClear="1">Clear Canvas</button>
+        </div>
+        <canvas></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SAVED ══ -->
+  <div id="p-saved" class="panel">
+    <div class="card">
+      <div class="ctitle"><span class="gem" style="background:linear-gradient(135deg,#b8c9b0,#6a8a62)"></span>My Saved Notes</div>
+      <div id="hss-list"></div>
+    </div>
+  </div>
+
+  <!-- ══ MORNING ══ -->
+  <div id="p-morning" class="panel">
+    <div class="morning-banner">
+      <div class="fl">🌸</div>
+      <h2>Morning <em>Light</em></h2>
+      <p>Begin each morning with a gentle scripture or uplifting quote to set the tone for your beautiful day.</p>
+      <div class="tog-row">
+        <span class="tog-lbl">Morning Notifications</span>
+        <button class="tog" id="hss-tog" data-toggle="notif"></button>
+        <span id="hss-tstat" style="font-size:11px;color:var(--soft);letter-spacing:2px;text-transform:uppercase">Off</span>
+      </div>
+      <div class="trow">
+        <label>Wake-up Time</label>
+        <input type="time" id="hss-wtime" value="07:00">
+      </div>
+      <div class="ntypes">
+        <button class="ntype on" data-ntype="scripture">Scripture</button>
+        <button class="ntype" data-ntype="quote">Devotional Quote</button>
+        <button class="ntype" data-ntype="both">Both</button>
+      </div>
+    </div>
+    <div class="qcard" id="hss-qcard">
+      <div class="qtext" id="hss-qt"></div>
+      <div class="qref" id="hss-qr"></div>
+    </div>
+    <button class="nqbtn" data-newquote="1">New Inspiration 🌸</button>
+  </div>
+
+</div><!-- /wrap -->
+<div class="toast" id="hss-toast"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ── DATA ── */
+var SS=[
+  {t:"She is clothed with strength and dignity, and she laughs without fear of the future.",r:"Proverbs 31:25 \u2756 NLT"},
+  {t:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",r:"Jeremiah 29:11 \u2756 NIV"},
+  {t:"I can do all things through Christ who strengthens me.",r:"Philippians 4:13 \u2756 NKJV"},
+  {t:"Be still and know that I am God.",r:"Psalm 46:10 \u2756 NIV"},
+  {t:"You are altogether beautiful, my darling; there is no flaw in you.",r:"Song of Solomon 4:7 \u2756 NIV"},
+  {t:"The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will rejoice over you with singing.",r:"Zephaniah 3:17 \u2756 NIV"},
+  {t:"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",r:"Proverbs 3:5\u20136 \u2756 NIV"},
+  {t:"Fear not, for I am with you; be not dismayed, for I am your God; I will strengthen you, I will help you.",r:"Isaiah 41:10 \u2756 ESV"},
+  {t:"Cast all your anxiety on him because he cares for you.",r:"1 Peter 5:7 \u2756 NIV"},
+  {t:"Delight yourself in the Lord, and he will give you the desires of your heart.",r:"Psalm 37:4 \u2756 ESV"},
+  {t:"I praise you because I am fearfully and wonderfully made; your works are wonderful.",r:"Psalm 139:14 \u2756 NIV"},
+  {t:"She opens her mouth with wisdom, and the teaching of kindness is on her tongue.",r:"Proverbs 31:26 \u2756 ESV"},
+  {t:"Your beauty should not come from outward adornment. Rather, it should be that of your inner self, the unfading beauty of a gentle and quiet spirit.",r:"1 Peter 3:3\u20134 \u2756 NIV"},
+  {t:"Now faith is confidence in what we hope for and assurance about what we do not see.",r:"Hebrews 11:1 \u2756 NIV"},
+  {t:"The Lord is my shepherd; I shall not want.",r:"Psalm 23:1 \u2756 ESV"}
+];
+var SQ=[
+  {t:"You are never too broken, too lost, or too far gone for God\u2019s grace to find you.",r:"Morning Devotion"},
+  {t:"Your prayers are not wasted. Every word you speak to God matters to Him deeply.",r:"Daily Encouragement"},
+  {t:"God is not finished with your story. The best chapters are still being written.",r:"Words of Life"},
+  {t:"Rise, sister. The God who holds the universe holds your heart too.",r:"Sacred Morning"},
+  {t:"You were created on purpose, for a purpose, by a God who calls you beloved.",r:"Morning Light"},
+  {t:"Your faith doesn\u2019t have to be perfect \u2014 it just has to be pointed toward the One who is.",r:"Daily Grace"}
+];
+
+var nt='scripture', notifOn=false;
+function g(id){return document.getElementById(id)}
+function val(id){var e=g(id);return e?e.value:''}
+function set(id,v){var e=g(id);if(e&&v!=null)e.value=v}
+
+/* ── TAB SWITCH ── */
+function goTab(id){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('on')});
+  var panel=g('p-'+id);
+  if(panel)panel.classList.add('on');
+  var btn=document.querySelector('.tab[data-tab="'+id+'"]');
+  if(btn)btn.classList.add('on');
+  if(id==='saved')renderSaved();
+}
+
+/* ── QUOTE ── */
+function newQuote(){
+  var pool=nt==='scripture'?SS:nt==='quote'?SQ:SS.concat(SQ);
+  var q=pool[Math.floor(Math.random()*pool.length)];
+  var card=g('hss-qcard');
+  if(!card)return;
+  card.style.opacity='0';
+  setTimeout(function(){
+    g('hss-qt').textContent='\u201c'+q.t+'\u201d';
+    g('hss-qr').textContent=q.r;
+    card.style.opacity='1';
+    card.style.transition='opacity .4s ease';
+  },220);
+}
+
+/* ── TOGGLE NOTIF ── */
+function toggleNotif(){
+  notifOn=!notifOn;
+  var tog=g('hss-tog'), stat=g('hss-tstat');
+  tog.classList.toggle('on',notifOn);
+  stat.textContent=notifOn?'On':'Off';
+  stat.style.color=notifOn?'var(--rose)':'var(--soft)';
+  if(notifOn&&'Notification' in window){
+    Notification.requestPermission().then(function(p){
+      if(p==='granted'){toast('\uD83C\uDF38 Morning notifications enabled!');scheduleNotif();}
+      else{toast('Enable notifications in browser settings');notifOn=false;tog.classList.remove('on');stat.textContent='Off';}
+    });
+  } else if(notifOn){toast('\uD83C\uDF38 Morning reminder set!');}
+}
+function scheduleNotif(){
+  var v=(g('hss-wtime')||{}).value||'07:00';
+  var p=v.split(':'),now=new Date(),tgt=new Date();
+  tgt.setHours(+p[0],+p[1],0,0);
+  if(tgt<=now)tgt.setDate(tgt.getDate()+1);
+  setTimeout(function(){
+    var pool=nt==='scripture'?SS:nt==='quote'?SQ:SS.concat(SQ);
+    var q=pool[Math.floor(Math.random()*pool.length)];
+    new Notification('Good Morning, Beautiful \uD83C\uDF38',{body:'\u201c'+q.t+'\u201d \u2014 '+q.r});
+  },tgt-now);
+}
+
+/* ── SAVE / CLEAR / LOAD ── */
+function doSave(type){
+  var d={type:type,ts:Date.now()};
+  if(type==='daily'){d.date=val('d-date');d.plan=val('d-plan');d.chap=val('d-chap');d.verse=val('d-verse');d.pass=val('d-pass');d.pass2=val('d-pass2');d.out=val('d-out');d.app=val('d-app');d.pray=val('d-pray');}
+  else if(type==='service'){d.date=val('s-date');d.spk=val('s-spk');d.ttl=val('s-ttl');d.ser=val('s-ser');d.verse=val('s-verse');d.pass=val('s-pass');d.pass2=val('s-pass2');d.take=val('s-take');d.act=val('s-act');d.q=val('s-q');d.shr=val('s-shr');d.pray=val('s-pray');}
+  else{d.date=val('b-date');d.ldr=val('b-ldr');d.ttl=val('b-ttl');d.verse=val('b-verse');d.pass=val('b-pass');d.pass2=val('b-pass2');d.word=val('b-word');d.ctx=val('b-ctx');d.pers=val('b-pers');d.grp=val('b-grp');d.pray=val('b-pray');}
+  var notes=JSON.parse(localStorage.getItem('hss_notes')||'{}');
+  notes[type+'_'+d.ts]=d;
+  localStorage.setItem('hss_notes',JSON.stringify(notes));
+  toast('\u2756 Saved to My Notes!');
+}
+function doClear(type){
+  var panel=g('p-'+type);
+  if(panel)panel.querySelectorAll('input,textarea').forEach(function(e){e.value='';});
+  var xid=type==='daily'?'d-pass2':type==='service'?'s-pass2':'b-pass2';
+  var xe=g(xid);if(xe)xe.value='';
+}
+function renderSaved(){
+  var notes=JSON.parse(localStorage.getItem('hss_notes')||'{}');
+  var list=g('hss-list');if(!list)return;
+  var keys=Object.keys(notes).reverse();
+  if(!keys.length){list.innerHTML='<p class="empty">Your saved notes will appear here, beautiful. \uD83C\uDF38</p>';return;}
+  list.innerHTML=keys.map(function(k){
+    var n=notes[k];
+    var lbl=n.type==='daily'?'Daily Reading':n.type==='service'?'Sunday Service':'Bible Study';
+    var cls=n.type==='service'?'sv':n.type==='study'?'st':'';
+    var title=n.ttl||n.chap||n.plan||'Untitled';
+    var sub=[n.spk?'Speaker: '+n.spk:'',n.date||''].filter(Boolean).join(' \u00b7 ');
+    return '<div class="si" data-load="'+k+'">'
+      +'<span class="sit '+cls+'">'+lbl+'</span>'
+      +'<div class="sinfo"><div class="stitle">'+title+'</div>'
+      +'<div class="smeta">'+(sub||'No date')+'</div></div>'
+      +'<button class="sdel" data-del="'+k+'">\u2715</button>'
+      +'</div>';
+  }).join('');
+}
+function doLoad(k){
+  var notes=JSON.parse(localStorage.getItem('hss_notes')||'{}');
+  var n=notes[k];if(!n)return;
+  goTab(n.type);
+  if(n.type==='daily'){set('d-date',n.date);set('d-plan',n.plan);set('d-chap',n.chap);set('d-verse',n.verse);set('d-pass',n.pass);set('d-pass2',n.pass2);set('d-out',n.out);set('d-app',n.app);set('d-pray',n.pray);}
+  else if(n.type==='service'){set('s-date',n.date);set('s-spk',n.spk);set('s-ttl',n.ttl);set('s-ser',n.ser);set('s-verse',n.verse);set('s-pass',n.pass);set('s-pass2',n.pass2);set('s-take',n.take);set('s-act',n.act);set('s-q',n.q);set('s-shr',n.shr);set('s-pray',n.pray);}
+  else{set('b-date',n.date);set('b-ldr',n.ldr);set('b-ttl',n.ttl);set('b-verse',n.verse);set('b-pass',n.pass);set('b-pass2',n.pass2);set('b-word',n.word);set('b-ctx',n.ctx);set('b-pers',n.pers);set('b-grp',n.grp);set('b-pray',n.pray);}
+  toast('\u2756 Note loaded!');
+}
+function doDel(k){
+  var notes=JSON.parse(localStorage.getItem('hss_notes')||'{}');
+  delete notes[k];
+  localStorage.setItem('hss_notes',JSON.stringify(notes));
+  renderSaved();
+}
+function toast(msg){
+  var t=g('hss-toast');
+  t.textContent=msg;t.classList.add('on');
+  setTimeout(function(){t.classList.remove('on');},2800);
+}
+
+/* ══════════════════════════════════════════
+   APPLE PENCIL / TOUCH CANVAS ENGINE
+   Each .pen-canvas-wrap has its own state.
+   Supports:
+   - Apple Pencil (pointerType==="pen") pressure-sensitive width
+   - Finger / mouse fallback
+   - Color swatches, size presets, eraser, clear
+   ══════════════════════════════════════════ */
+var canvases={};/* map: wrap-id → state */
+
+function initCanvas(wrap){
+  var canvas=wrap.querySelector('canvas');
+  var dpr=window.devicePixelRatio||1;
+  var W=wrap.clientWidth||800;
+  var H=Math.max(1300,wrap.clientHeight||1300);
+  canvas.width=W*dpr;
+  canvas.height=H*dpr;
+  canvas.style.height=H+'px';
+  var ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  ctx.lineCap='round';
+  ctx.lineJoin='round';
+
+  var state={
+    ctx:ctx, canvas:canvas, wrap:wrap, dpr:dpr,
+    drawing:false, erasing:false,
+    color:'#2d1f24', size:3.5,
+    lastX:0, lastY:0
+  };
+
+  /* draw lined paper on canvas bg */
+  drawLines(state);
+
+  /* pointer events — unified mouse/touch/pen */
+  canvas.addEventListener('pointerdown',function(e){
+    e.preventDefault();
+    state.drawing=true;
+    var pos=getPos(e,canvas);
+    state.lastX=pos.x; state.lastY=pos.y;
+    ctx.beginPath();
+    ctx.moveTo(pos.x,pos.y);
+    setStrokeStyle(state,e);
+  },{passive:false});
+
+  canvas.addEventListener('pointermove',function(e){
+    if(!state.drawing)return;
+    e.preventDefault();
+    var pos=getPos(e,canvas);
+    ctx.beginPath();
+    ctx.moveTo(state.lastX,state.lastY);
+    ctx.lineTo(pos.x,pos.y);
+    setStrokeStyle(state,e);
+    ctx.stroke();
+    state.lastX=pos.x; state.lastY=pos.y;
+  },{passive:false});
+
+  canvas.addEventListener('pointerup',function(e){state.drawing=false;},{passive:true});
+  canvas.addEventListener('pointercancel',function(e){state.drawing=false;},{passive:true});
+  canvas.addEventListener('pointerleave',function(e){state.drawing=false;},{passive:true});
+
+  canvases[wrap.id]=state;
+}
+
+function setStrokeStyle(state,e){
+  var ctx=state.ctx;
+  if(state.erasing){
+    ctx.globalCompositeOperation='destination-out';
+    ctx.lineWidth=state.size*5;
+    ctx.strokeStyle='rgba(0,0,0,1)';
+  } else {
+    ctx.globalCompositeOperation='source-over';
+    /* pressure sensitivity for Apple Pencil */
+    var pressure=(e&&e.pressure&&e.pointerType==='pen')?e.pressure:0.5;
+    var w=state.size*(0.4+pressure*1.4);
+    ctx.lineWidth=Math.max(0.5,w);
+    ctx.strokeStyle=state.color;
+  }
+}
+
+function drawLines(state){
+  var ctx=state.ctx;
+  var W=state.canvas.width/state.dpr;
+  var H=state.canvas.height/state.dpr;
+  /* ruled lines */
+  ctx.save();
+  ctx.strokeStyle='rgba(232,213,218,.45)';
+  ctx.lineWidth=1;
+  for(var y=61;y<H;y+=43){
+    ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+  }
+  /* margin line */
+  ctx.strokeStyle='rgba(212,120,138,.18)';
+  ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(52,0);ctx.lineTo(52,H);ctx.stroke();
+  ctx.restore();
+}
+
+function getPos(e,canvas){
+  var r=canvas.getBoundingClientRect();
+  return{x:e.clientX-r.left, y:e.clientY-r.top};
+}
+
+function clearCanvas(wrap){
+  var state=canvases[wrap.id];
+  if(!state)return;
+  var W=state.canvas.width/state.dpr;
+  var H=state.canvas.height/state.dpr;
+  state.ctx.clearRect(0,0,W,H);
+  drawLines(state);
+}
+
+/* toolbar interactions */
+function bindToolbar(wrap){
+  var state=canvases[wrap.id];
+  wrap.addEventListener('click',function(e){
+    var el=e.target;
+
+    /* color swatch */
+    var sw=el.closest?el.closest('.color-swatch'):null;
+    if(sw){
+      state.color=sw.getAttribute('data-color');
+      state.erasing=false;
+      wrap.querySelectorAll('.color-swatch').forEach(function(s){s.classList.remove('sel')});
+      sw.classList.add('sel');
+      wrap.querySelectorAll('.eraser-btn').forEach(function(b){b.classList.remove('sel')});
+      return;
+    }
+
+    /* size */
+    var sz=el.closest?el.closest('.size-btn'):null;
+    if(sz){
+      state.size=parseFloat(sz.getAttribute('data-size'));
+      wrap.querySelectorAll('.size-btn').forEach(function(b){b.classList.remove('sel')});
+      sz.classList.add('sel');
+      return;
+    }
+
+    /* eraser */
+    var er=el.closest?el.closest('.eraser-btn'):null;
+    if(er){
+      state.erasing=!state.erasing;
+      er.classList.toggle('sel',state.erasing);
+      return;
+    }
+
+    /* clear canvas */
+    if(el.closest?el.closest('[data-canvasClear]'):null){
+      clearCanvas(wrap);
+      return;
+    }
+  });
+}
+
+/* toggle canvas/textarea */
+function togglePen(textareaId){
+  var cvWrap=g('cv-'+textareaId);
+  var textarea=g(textareaId);
+  if(!cvWrap||!textarea)return;
+  var showing=cvWrap.classList.toggle('show');
+  textarea.style.display=showing?'none':'';
+  /* find the pen button */
+  var btn=document.querySelector('[data-pen="'+textareaId+'"]');
+  if(btn)btn.classList.toggle('active',showing);
+  if(showing&&!canvases[cvWrap.id]){
+    initCanvas(cvWrap);
+    bindToolbar(cvWrap);
+  }
+}
+
+/* ── DELEGATED EVENT LISTENER ── */
+document.addEventListener('click',function(e){
+  var el=e.target;
+  function closest(attr){return el.closest?el.closest('['+attr+']'):el.getAttribute&&el.getAttribute(attr.replace('[','').replace(']',''))?el:null}
+
+  /* tabs */
+  var tab=el.closest?el.closest('[data-tab]'):null;
+  if(tab){goTab(tab.getAttribute('data-tab'));return;}
+
+  /* pen toggle */
+  var pen=el.closest?el.closest('[data-pen]'):null;
+  if(pen&&!el.closest('[data-canvasClear]')&&!el.closest('.color-swatch')&&!el.closest('.size-btn')&&!el.closest('.eraser-btn')){
+    togglePen(pen.getAttribute('data-pen'));return;
+  }
+
+  /* save */
+  var sv=el.closest?el.closest('[data-save]'):null;
+  if(sv){doSave(sv.getAttribute('data-save'));return;}
+
+  /* print */
+  if(el.closest?el.closest('[data-print]'):null){window.print();return;}
+
+  /* clear form */
+  var clr=el.closest?el.closest('[data-clear]'):null;
+  if(clr){doClear(clr.getAttribute('data-clear'));return;}
+
+  /* notif toggle */
+  if(el.closest?el.closest('[data-toggle="notif"]'):null){toggleNotif();return;}
+
+  /* notif type */
+  var ntype=el.closest?el.closest('[data-ntype]'):null;
+  if(ntype){
+    nt=ntype.getAttribute('data-ntype');
+    document.querySelectorAll('.ntype').forEach(function(b){b.classList.remove('on')});
+    ntype.classList.add('on');
+    newQuote();return;
+  }
+
+  /* new quote */
+  if(el.closest?el.closest('[data-newquote]'):null){newQuote();return;}
+
+  /* load note */
+  var loadEl=el.closest?el.closest('[data-load]'):null;
+  if(loadEl&&!(el.closest?el.closest('[data-del]'):null)){doLoad(loadEl.getAttribute('data-load'));return;}
+
+  /* delete note */
+  var delEl=el.closest?el.closest('[data-del]'):null;
+  if(delEl){e.stopPropagation();doDel(delEl.getAttribute('data-del'));return;}
+});
+
+/* ── INIT ── */
+var today=new Date().toISOString().split('T')[0];
+['d-date','s-date','b-date'].forEach(function(id){var e=g(id);if(e)e.value=today;});
+newQuote();
+
+})();
+</script>
+</body>
+</html>
