@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Her Sacred Space — Bible Notes & Daily Devotion</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --rose:#d4788a;--rose-dk:#a54d62;--rose-lt:#fdf0f3;--petal:#f0d6de;
+  --blush:#fdf4f6;--lav:#e8dff0;--lav-dk:#8a6aab;
+  --gold:#c9a96e;--gold-lt:#faf3e6;--gold-dk:#8a6a35;
+  --cream:#fdf8f4;--ink:#2d1f24;--mid:#6b4f58;--soft:#a08090;
+  --border:#edd8df;--white:#fff;
+  --shadow:rgba(212,120,138,.13);
+}
+
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+/* ── FLOATING PETALS bg ── */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 8% 15%,rgba(240,214,222,.55) 0%,transparent 40%),
+    radial-gradient(ellipse at 92% 10%,rgba(232,223,240,.5) 0%,transparent 35%),
+    radial-gradient(ellipse at 50% 60%,rgba(201,169,110,.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 20% 90%,rgba(240,214,222,.4) 0%,transparent 35%),
+    radial-gradient(ellipse at 80% 85%,rgba(232,223,240,.4) 0%,transparent 35%);
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:18px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(253,248,244,.88);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(237,216,223,.5);
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 4px 30px var(--shadow)}
+.nav-logo{
+  font-family:'Dancing Script',cursive;
+  font-size:22px;font-weight:600;color:var(--rose-dk);
+  letter-spacing:.5px;text-decoration:none;
+}
+.nav-logo span{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;font-weight:300;color:var(--soft);letter-spacing:2px;display:block;margin-top:-4px}
+.nav-cta{
+  padding:9px 22px;
+  background:linear-gradient(135deg,#e8909f,var(--rose-dk));
+  color:var(--white);border:none;border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;
+  box-shadow:0 4px 14px rgba(164,77,98,.28);
+  transition:opacity .18s,transform .15s;
+}
+.nav-cta:hover{opacity:.88;transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 24px 80px;
+  overflow:hidden;
+}
+/* decorative rings */
+.hero::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  border:1px solid rgba(212,120,138,.12);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;animation:ringPulse 6s ease-in-out infinite;
+}
+.hero::after{
+  content:'';position:absolute;
+  width:900px;height:900px;border-radius:50%;
+  border:1px solid rgba(212,120,138,.07);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;animation:ringPulse 6s ease-in-out infinite .5s;
+}
+@keyframes ringPulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.03)}}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--rose-lt);border:1px solid var(--petal);
+  border-radius:50px;padding:6px 16px;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);
+  margin-bottom:28px;
+  animation:fadeDown .8s ease both;
+}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--rose);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,7vw,72px);
+  font-weight:300;line-height:1.1;letter-spacing:-1px;
+  color:var(--ink);
+  max-width:760px;
+  animation:fadeUp .9s ease .15s both;
+}
+.hero h1 em{font-style:italic;color:var(--rose);font-weight:400}
+.hero h1 .script{
+  font-family:'Dancing Script',cursive;
+  font-size:.85em;color:var(--rose-dk);display:block;
+  font-weight:500;letter-spacing:1px;
+}
+
+.hero-sub{
+  font-family:'Lato',sans-serif;font-weight:300;
+  font-size:clamp(15px,2.5vw,19px);
+  color:var(--mid);line-height:1.8;
+  max-width:520px;margin:24px auto 0;
+  animation:fadeUp .9s ease .3s both;
+}
+
+.hero-actions{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  margin-top:40px;
+  animation:fadeUp .9s ease .45s both;
+}
+.btn-primary{
+  padding:16px 36px;
+  background:linear-gradient(135deg,#e8909f,var(--rose-dk));
+  color:var(--white);border:none;border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  box-shadow:0 6px 24px rgba(164,77,98,.35);
+  transition:all .22s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(164,77,98,.4)}
+.btn-secondary{
+  padding:16px 36px;
+  background:transparent;color:var(--rose-dk);
+  border:1.5px solid var(--rose);border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  transition:all .22s;
+}
+.btn-secondary:hover{background:var(--rose-lt);transform:translateY(-2px)}
+
+/* app mockup preview */
+.hero-mockup{
+  margin-top:64px;
+  position:relative;z-index:2;
+  animation:fadeUp .9s ease .6s both;
+  max-width:680px;width:100%;
+}
+.mockup-frame{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:24px;
+  box-shadow:0 20px 80px rgba(212,120,138,.2),0 4px 20px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+.mockup-bar{
+  background:linear-gradient(90deg,#f5c0cc,#e8d0f5,var(--gold),#f5c0cc);
+  background-size:200% 100%;height:4px;
+  animation:shimmer 4s linear infinite;
+}
+@keyframes shimmer{0%{background-position:0% 0}100%{background-position:200% 0}}
+.mockup-header{
+  background:var(--cream);
+  padding:20px 28px 16px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+}
+.mockup-header .m-flowers{font-size:13px;letter-spacing:6px;color:var(--rose);opacity:.7;margin-bottom:4px}
+.mockup-header h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:300;color:var(--ink)}
+.mockup-header h2 em{color:var(--rose);font-style:italic}
+.mockup-header p{font-family:'Dancing Script',cursive;font-size:13px;color:var(--soft);margin-top:2px}
+.mockup-tabs{
+  display:flex;gap:6px;padding:14px 20px;
+  background:var(--cream);flex-wrap:wrap;border-bottom:1px solid var(--border);
+}
+.m-tab{
+  padding:6px 14px;border:1px solid var(--petal);border-radius:50px;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);
+  background:var(--white);
+}
+.m-tab.on{background:linear-gradient(135deg,#e8909f,var(--rose-dk));color:var(--white);border-color:transparent}
+.mockup-body{padding:20px 24px}
+.m-field-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.m-field{background:var(--blush);border:1px solid var(--border);border-radius:8px;padding:8px 10px}
+.m-field .m-lbl{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-bottom:3px}
+.m-field .m-val{font-size:11px;color:var(--ink)}
+.m-scripture{background:var(--gold-lt);border:1px solid var(--gold);border-radius:8px;padding:10px 12px;margin-bottom:12px}
+.m-scripture p{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--gold-dk)}
+.m-notes{
+  background:#fffbfd;border:1px solid var(--border);border-radius:10px;
+  padding:14px;height:90px;position:relative;overflow:hidden;
+  background-image:repeating-linear-gradient(transparent,transparent 22px,rgba(232,213,218,.4) 22px,rgba(232,213,218,.4) 23px);
+  background-position:0 14px;
+}
+.m-notes p{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;color:var(--soft)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── DIVIDER ── */
+.divider{text-align:center;padding:20px 0;color:var(--petal);font-size:16px;letter-spacing:12px;position:relative;z-index:1}
+
+/* ── SECTION BASE ── */
+section{position:relative;z-index:1;padding:100px 24px}
+.section-inner{max-width:1060px;margin:0 auto}
+.section-label{
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--rose);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;justify-content:center;
+}
+.section-label::before,.section-label::after{content:'';flex:0 0 30px;height:1px;background:var(--rose);opacity:.4}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,4vw,44px);font-weight:300;
+  line-height:1.2;text-align:center;color:var(--ink);margin-bottom:16px;
+}
+.section-title em{font-style:italic;color:var(--rose)}
+.section-sub{
+  font-size:16px;font-weight:300;color:var(--mid);
+  line-height:1.8;text-align:center;max-width:500px;margin:0 auto 60px;
+}
+
+/* ── FEATURES ── */
+.features-bg{background:var(--white)}
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+.feat-card{
+  background:var(--cream);
+  border:1.5px solid var(--border);border-radius:22px;
+  padding:32px 28px;
+  position:relative;overflow:hidden;
+  transition:transform .22s,box-shadow .22s;
+}
+.feat-card:hover{transform:translateY(-5px);box-shadow:0 16px 50px var(--shadow)}
+.feat-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--petal),var(--lav),var(--gold));
+}
+.feat-icon{
+  width:52px;height:52px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:18px;
+  box-shadow:0 4px 14px var(--shadow);
+}
+.feat-icon.rose{background:linear-gradient(135deg,#fdf0f3,var(--petal))}
+.feat-icon.lav{background:linear-gradient(135deg,var(--lav),#d8cee8)}
+.feat-icon.gold{background:linear-gradient(135deg,var(--gold-lt),#f0e4c8)}
+.feat-icon.sage{background:linear-gradient(135deg,#edf3eb,#d4e4d0)}
+.feat-title{
+  font-family:'Playfair Display',serif;font-size:19px;font-weight:400;
+  color:var(--ink);margin-bottom:10px;
+}
+.feat-desc{font-size:14px;font-weight:300;color:var(--mid);line-height:1.75}
+.feat-tag{
+  display:inline-block;margin-top:14px;
+  background:var(--rose-lt);color:var(--rose);
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 12px;border-radius:20px;
+}
+.feat-tag.gold-tag{background:var(--gold-lt);color:var(--gold-dk)}
+.feat-tag.lav-tag{background:var(--lav);color:var(--lav-dk)}
+.feat-tag.sage-tag{background:#edf3eb;color:#4a7a44}
+
+/* ── HOW IT WORKS ── */
+.how-works{background:var(--cream)}
+.steps{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:0;max-width:900px;margin:0 auto;
+  position:relative;
+}
+.steps::before{
+  content:'';position:absolute;
+  top:36px;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--petal),var(--petal),transparent);
+  pointer-events:none;
+}
+@media(max-width:600px){.steps::before{display:none}}
+.step{text-align:center;padding:0 20px}
+.step-num{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--white);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;font-size:26px;
+  box-shadow:0 4px 20px var(--shadow);
+  position:relative;z-index:1;
+  transition:transform .22s,box-shadow .22s;
+}
+.step:hover .step-num{transform:scale(1.08);box-shadow:0 8px 30px var(--shadow)}
+.step-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--ink);margin-bottom:8px}
+.step-desc{font-size:13px;font-weight:300;color:var(--mid);line-height:1.7}
+
+/* ── COMMUNITY ── */
+.community{background:var(--white)}
+.community-inner{
+  max-width:780px;margin:0 auto;
+  background:linear-gradient(135deg,#fff0f4,#f8f0fc,#fffbf0);
+  border:1.5px solid var(--border);border-radius:32px;
+  padding:64px 48px;text-align:center;
+  box-shadow:0 8px 50px var(--shadow);
+  position:relative;overflow:hidden;
+}
+.community-inner::before{content:'🌸';position:absolute;top:20px;left:28px;font-size:28px;opacity:.2}
+.community-inner::after{content:'🌿';position:absolute;bottom:20px;right:28px;font-size:28px;opacity:.2}
+.community-inner h2{
+  font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,38px);
+  font-weight:300;color:var(--ink);margin-bottom:14px;line-height:1.2;
+}
+.community-inner h2 em{font-style:italic;color:var(--rose)}
+.community-inner p{
+  font-size:16px;font-weight:300;color:var(--mid);
+  line-height:1.8;max-width:480px;margin:0 auto 32px;
+}
+.email-row{
+  display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center;
+}
+.email-input{
+  flex:1;min-width:200px;
+  border:1.5px solid var(--border);border-radius:50px;
+  padding:13px 20px;font-family:'Lato',sans-serif;font-size:14px;
+  color:var(--ink);background:var(--white);outline:none;
+  transition:border-color .18s;
+}
+.email-input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(212,120,138,.1)}
+.email-input::placeholder{color:var(--soft)}
+.btn-join{
+  padding:13px 28px;
+  background:linear-gradient(135deg,#e8909f,var(--rose-dk));
+  color:var(--white);border:none;border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+  cursor:pointer;white-space:nowrap;
+  box-shadow:0 4px 14px rgba(164,77,98,.28);
+  transition:all .22s;
+}
+.btn-join:hover{opacity:.88;transform:translateY(-1px)}
+.community-note{font-size:11px;color:var(--soft);margin-top:14px;letter-spacing:.5px}
+
+/* ── APP LINK SECTION ── */
+.app-section{
+  background:linear-gradient(160deg,#fdf0f3 0%,#f8f0fc 50%,#fdf8f0 100%);
+  padding:100px 24px;
+}
+.app-inner{
+  max-width:860px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+}
+@media(max-width:700px){.app-inner{grid-template-columns:1fr;text-align:center}}
+.app-text h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,4vw,40px);font-weight:300;line-height:1.2;
+  color:var(--ink);margin-bottom:16px;
+}
+.app-text h2 em{font-style:italic;color:var(--rose)}
+.app-text p{font-size:15px;font-weight:300;color:var(--mid);line-height:1.8;margin-bottom:28px}
+.app-features{list-style:none;margin-bottom:32px}
+.app-features li{
+  font-size:14px;color:var(--mid);font-weight:300;
+  padding:7px 0;display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid rgba(237,216,223,.5);
+}
+.app-features li:last-child{border:none}
+.app-features li::before{content:'✦';color:var(--rose);font-size:10px;flex-shrink:0}
+.app-preview{
+  background:var(--white);border:1.5px solid var(--border);
+  border-radius:22px;overflow:hidden;
+  box-shadow:0 16px 60px rgba(212,120,138,.18);
+}
+.app-preview .mockup-bar{height:3px}
+.app-preview-head{padding:16px 20px;background:var(--cream);border-bottom:1px solid var(--border);text-align:center}
+.app-preview-head p{font-family:'Dancing Script',cursive;font-size:16px;color:var(--rose-dk)}
+.app-preview-body{padding:16px 20px}
+.mini-tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.mini-tab{
+  padding:4px 10px;border:1px solid var(--petal);border-radius:20px;
+  font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);
+  background:var(--white);
+}
+.mini-tab.on{background:linear-gradient(135deg,#e8909f,var(--rose-dk));color:var(--white);border-color:transparent}
+.mini-lined{
+  background:#fffbfd;border:1px solid var(--border);border-radius:8px;
+  padding:10px 12px;height:70px;
+  background-image:repeating-linear-gradient(transparent,transparent 18px,rgba(232,213,218,.4) 18px,rgba(232,213,218,.4) 19px);
+  background-position:0 10px;margin-bottom:10px;
+}
+.mini-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mini-box{background:var(--blush);border:1px solid var(--border);border-radius:7px;padding:8px;height:42px}
+.mini-box .lbl{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--soft)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.7);
+  padding:48px 24px;text-align:center;
+}
+.footer-logo{
+  font-family:'Dancing Script',cursive;font-size:24px;font-weight:600;
+  color:var(--rose);margin-bottom:6px;
+}
+.footer-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-bottom:24px}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .18s}
+.footer-links a:hover{color:var(--rose)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:1px}
+.footer-hearts{font-size:14px;letter-spacing:8px;margin-bottom:16px;opacity:.5}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  nav{padding:14px 20px}
+  .hero{padding:100px 20px 60px}
+  .community-inner{padding:40px 24px}
+  section{padding:70px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    Her Sacred Space
+    <span>Bible Notes &amp; Devotion</span>
+  </a>
+  <a href="app.html" class="nav-cta" target="_blank">Open the App</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Free to Use &nbsp;·&nbsp; No Login Required
+  </div>
+
+  <h1>
+    <span class="script">A digital sanctuary for</span>
+    Her <em>Sacred</em> Space
+  </h1>
+
+  <p class="hero-sub">
+    Beautiful Bible notes for daily reading, Sunday service &amp; Bible study —
+    designed for women who love God and love to write.
+  </p>
+
+  <div class="hero-actions">
+    <a href="app.html" class="btn-primary" target="_blank">Start Taking Notes 🌸</a>
+    <a href="#features" class="btn-secondary">See Features</a>
+  </div>
+
+  <div class="hero-mockup">
+    <div class="mockup-frame">
+      <div class="mockup-bar"></div>
+      <div class="mockup-header">
+        <div class="m-flowers">🌸 ✦ 🌸</div>
+        <h2>Her <em>Sacred</em> Space</h2>
+        <p>Bible Notes &amp; Daily Devotion</p>
+      </div>
+      <div class="mockup-tabs">
+        <div class="m-tab on">Daily Reading</div>
+        <div class="m-tab">Sunday Service</div>
+        <div class="m-tab">Bible Study</div>
+        <div class="m-tab">My Notes</div>
+        <div class="m-tab">🌸 Morning Light</div>
+      </div>
+      <div class="mockup-body">
+        <div class="m-field-row">
+          <div class="m-field"><div class="m-lbl">Date</div><div class="m-val">Today</div></div>
+          <div class="m-field"><div class="m-lbl">Reading Plan</div><div class="m-val">Psalms in 30 Days</div></div>
+          <div class="m-field"><div class="m-lbl">Book &amp; Chapter</div><div class="m-val">Psalm 23</div></div>
+        </div>
+        <div class="m-scripture">
+          <p>"The Lord is my shepherd; I shall not want." — Psalm 23:1 ✦ ESV</p>
+        </div>
+        <div class="m-notes">
+          <p>Write out the passage, your reflections, what God is saying to you today…</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">🌸 ✦ 🌸</div>
+
+<!-- FEATURES -->
+<section class="features-bg" id="features">
+  <div class="section-inner">
+    <div class="section-label">Everything You Need</div>
+    <h2 class="section-title">Designed for the woman who is <em>hungry for God's Word</em></h2>
+    <p class="section-sub">Three dedicated note-taking spaces, morning devotions, and the ability to write with your Apple Pencil.</p>
+
+    <div class="features-grid reveal">
+      <div class="feat-card">
+        <div class="feat-icon rose">📖</div>
+        <div class="feat-title">Daily Bible Reading</div>
+        <p class="feat-desc">Track your reading plan, capture key scriptures, reflect on the passage, and write your prayer response — all in one beautiful space.</p>
+        <span class="feat-tag">Daily Devotion</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon gold">🕊️</div>
+        <div class="feat-title">Sunday Service Notes</div>
+        <p class="feat-desc">Never lose a sermon again. Log the speaker, title, key scriptures, takeaways, action steps, and who you want to share it with.</p>
+        <span class="feat-tag gold-tag">Sunday Service</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon lav">✨</div>
+        <div class="feat-title">Bible Study</div>
+        <p class="feat-desc">Deep-dive with word studies, historical context, personal revelation and group discussion notes — everything for serious study.</p>
+        <span class="feat-tag lav-tag">Bible Study</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon rose">✏️</div>
+        <div class="feat-title">Apple Pencil Writing</div>
+        <p class="feat-desc">Switch to handwriting mode and write naturally with your Apple Pencil. Pressure sensitivity, multiple ink colors, and lined paper — just like a journal.</p>
+        <span class="feat-tag">iPad Ready</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon gold">🌸</div>
+        <div class="feat-title">Morning Light Devotions</div>
+        <p class="feat-desc">Wake up to a scripture or devotional quote every morning. Set your wake-up time and let God's word be the first thing you receive.</p>
+        <span class="feat-tag gold-tag">Daily Inspiration</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon sage">🖨️</div>
+        <div class="feat-title">Print Your Notes</div>
+        <p class="feat-desc">Every note is beautifully formatted for printing. Build a physical binder of your spiritual journey — digital and printable in one.</p>
+        <span class="feat-tag sage-tag">Print Ready</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-works" id="how">
+  <div class="section-inner">
+    <div class="section-label">Simple &amp; Beautiful</div>
+    <h2 class="section-title">Three steps to your <em>sacred notes</em></h2>
+    <p class="section-sub">No downloads, no accounts, no setup. Just open and start writing.</p>
+
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">🌸</div>
+        <div class="step-title">Open the App</div>
+        <p class="step-desc">Tap the link on any device — iPhone, iPad, or computer. No download or login required.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">✦</div>
+        <div class="step-title">Choose Your Section</div>
+        <p class="step-desc">Select Daily Reading, Sunday Service, or Bible Study depending on what you're doing today.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">📖</div>
+        <div class="step-title">Write &amp; Save</div>
+        <p class="step-desc">Type or write with Apple Pencil. Save your notes privately on your own device and print anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">🌸 ✦ 🌸</div>
+
+<!-- APP LINK -->
+<section class="app-section" id="app">
+  <div class="app-inner">
+    <div class="app-text reveal">
+      <h2>Ready to begin your <em>sacred journey?</em></h2>
+      <p>Her Sacred Space is completely free. Open it in your browser, save it to your home screen, and make it yours.</p>
+      <ul class="app-features">
+        <li>Daily Bible reading notes with lined passage space</li>
+        <li>Full Sunday sermon note template</li>
+        <li>In-depth Bible study pages</li>
+        <li>Apple Pencil handwriting support</li>
+        <li>Morning scripture notifications</li>
+        <li>Saves privately on your own device</li>
+        <li>Printable — beautiful on paper too</li>
+      </ul>
+      <a href="app.html" class="btn-primary" target="_blank">Open Her Sacred Space 🌸</a>
+      <p style="margin-top:14px;font-size:12px;color:var(--soft);letter-spacing:.5px">Free forever · No account needed · Your notes stay private</p>
+    </div>
+    <div class="app-preview reveal">
+      <div class="mockup-bar"></div>
+      <div class="app-preview-head">
+        <p>Her Sacred Space</p>
+      </div>
+      <div class="app-preview-body">
+        <div class="mini-tabs">
+          <div class="mini-tab on">Daily</div>
+          <div class="mini-tab">Service</div>
+          <div class="mini-tab">Study</div>
+          <div class="mini-tab">🌸</div>
+        </div>
+        <div class="mini-lined"></div>
+        <div class="mini-row">
+          <div class="mini-box"><div class="lbl">What stood out</div></div>
+          <div class="mini-box"><div class="lbl">Prayer response</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <div class="section-inner">
+    <div class="community-inner reveal">
+      <h2>Join the <em>Her Sacred Space</em> Community</h2>
+      <p>Get encouragement, new scripture collections, devotional updates, and be the first to know about new features — straight to your inbox.</p>
+      <div class="email-row">
+        <input type="email" class="email-input" placeholder="your@email.com" id="email-input">
+        <button class="btn-join" id="join-btn">Join Us 🌸</button>
+      </div>
+      <p class="community-note">No spam, ever. Just love, encouragement &amp; God's Word. 🌸</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-hearts">🌸 ✦ 🌸</div>
+  <div class="footer-logo">Her Sacred Space</div>
+  <div class="footer-sub">Bible Notes &amp; Daily Devotion</div>
+  <div class="footer-links">
+    <a href="#features">Features</a>
+    <a href="#how">How It Works</a>
+    <a href="#app">Open App</a>
+    <a href="#community">Community</a>
+  </div>
+  <p class="footer-copy">Made with 🌸 for women who love God's Word</p>
+</footer>
+
+<script>
+(function(){
+  /* nav scroll */
+  var nav=document.getElementById('navbar');
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>40);
+  });
+
+  /* scroll reveal */
+  var reveals=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+    });
+  },{threshold:.12});
+  reveals.forEach(function(r){io.observe(r);});
+
+  /* email join */
+  document.getElementById('join-btn').addEventListener('click',function(){
+    var email=document.getElementById('email-input').value.trim();
+    if(!email||!email.includes('@')){
+      document.getElementById('email-input').style.borderColor='var(--rose)';
+      return;
+    }
+    document.querySelector('.email-row').innerHTML=
+      '<p style="font-family:\'Playfair Display\',serif;font-style:italic;font-size:18px;color:var(--rose-dk)">Welcome to the community, beautiful! 🌸</p>';
+  });
+
+  /* App links now point directly to app.html */
+})();
+</script>
+</body>
+</html>
